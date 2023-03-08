@@ -35,9 +35,6 @@ document.querySelector("#btnTwoZero").addEventListener("click", function(event) 
         screenOne.textContent += '0.';
         return;}
     else{screenOne.textContent += 0;}    
-
-    // let x = Number(screenOne.textContent);
-    // oneOperand = x;
 })
 
 //Точка - 0

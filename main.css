@@ -27,12 +27,9 @@ body{
     font-size: 40px;
     margin: 0px 34px 7px -14px;
     color: aliceblue;
-    /* overflow: hidden; */
 }
 .btn {
-    /* background-color: white; */
     display: flex;
-    /* margin: auto; */
 } 
 .btnRow {
     width: 15%;
