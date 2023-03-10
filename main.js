@@ -7,6 +7,8 @@ let oneOperand = 0;
 let symbols = '';
 let twoOperand = 0;
 let procent = 0;
+let result = '';
+let str = '';
 let i = 0;
 
 // Проценты
@@ -108,31 +110,62 @@ btnSymbolsArray.forEach(btn => {
         dotOne = true;
         i = 0;
         if(oneOperand != 0) {
-            screenTwo.textContent = screenOne.textContent;
-            if (symbols == '') {
-            screenOne.textContent = "";
-            symbols = event.target.textContent;
-            screenTwo.textContent += symbols;
+            if(oneOperand != 0 && symbols == '' && twoOperand == 0) {
+            screenTwo.textContent += screenOne.textContent;  // Переносим первое число на маленький экран 
+        }
+            if (symbols == '' && screenOne.textContent != '') { // Если символ не введен и есть значение на Большом экране
+            screenOne.textContent = "";  // Очищаем большой экран
+            symbols = event.target.textContent; // Определяем символ операции 
+            screenTwo.textContent += symbols; // Добавляем это символ на маленький экран
             }
-            else if (symbols != '') {
+            // Смена символа после ввода первого операнда
+            else if (symbols != '' && screenOne.textContent == '') {
                 screenOne.textContent = "";
                 symbols = event.target.textContent;
                 screenTwo.textContent = oneOperand;
                 screenTwo.textContent += symbols;
             }
         }
+        // Поочередное сложение цифр
+        if(screenTwo != '' && symbols != '' && screenOne.textContent != '') {
+            if (event.target.textContent === '+') {
+                oneOperand += Number(screenOne.textContent);
+                screenTwo.textContent += screenOne.textContent;
+                screenTwo.textContent += '+';
+                str = screenTwo.textContent;
+                screenOne.textContent = '';
+                twoOperand = 0;
+                console.log(oneOperand, twoOperand, str);
+            }
+            else {
+
+            }
+            
+
+
+        } 
     });
 });
 
 // Равно - Математические операции
 document.querySelector("#btnEquals").addEventListener("click", calc => {
-    let result = 0;
-    switch (symbols) {
+    if (str != '') { // Равно если поочерёдно прибавляем цифры
+        oneOperand += Number(screenOne.textContent);
+        str += screenOne.textContent;
+        screenTwo.textContent = str;
+        screenOne.textContent = oneOperand;
+        console.log(oneOperand, twoOperand, str);
+        str = '';
+        twoOperand = 0;
+    }
+    if (oneOperand != 0 && symbols != '' && twoOperand != 0 && str === '') { // Равно если есть только 2 операнда
+        switch (symbols) { 
         case '+':
             screenTwo.textContent = oneOperand + " + " + twoOperand;
             result = oneOperand + twoOperand;
             if (result % 1) {screenOne.textContent = result.toFixed(2)}
             else {screenOne.textContent = result.toFixed()}
+            console.log(oneOperand, twoOperand, str);
             break;
         case '-':
             screenTwo.textContent = oneOperand + " - " + twoOperand;
@@ -159,6 +192,7 @@ document.querySelector("#btnEquals").addEventListener("click", calc => {
             }
             break;
     }
+        console.log(result)}
 });
 
 
