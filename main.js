@@ -137,12 +137,6 @@ btnSymbolsArray.forEach(btn => {
                 twoOperand = 0;
                 console.log(oneOperand, twoOperand, str);
             }
-            else {
-
-            }
-            
-
-
         } 
     });
 });
