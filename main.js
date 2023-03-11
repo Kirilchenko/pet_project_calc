@@ -135,7 +135,6 @@ btnSymbolsArray.forEach(btn => {
                 str = screenTwo.textContent;
                 screenOne.textContent = '';
                 twoOperand = 0;
-                console.log(oneOperand, twoOperand, str);
             }
         } 
     });
@@ -186,7 +185,7 @@ document.querySelector("#btnEquals").addEventListener("click", calc => {
             }
             break;
     }
-        console.log(result)}
+}
 });
 
 
